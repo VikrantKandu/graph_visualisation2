@@ -1,14 +1,16 @@
 /* Secondary Sidebar CSS */
 .secondary-sidebar {
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 73px;
+    /* right: 0; */
     width: 250px;
     height: 100vh;
     background-color: #f4f4f4;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease;
-    
+    z-index: 1;
+    left: 250px;
+
   }
   
   .secondary-sidebar.attached {

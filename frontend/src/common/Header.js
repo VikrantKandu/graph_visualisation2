@@ -3,7 +3,7 @@ import './Header.css';
 import logo from '../assets/vik.png'; // Replace with the correct path to your predefined PNG logo
 import { ThemeContext } from '../context/ThemeContext';
 // import profileImage from '../assets/profile.png'; // Ensure the path to your profile image is correct
-import { FaSun, FaMoon,FaSearch } from 'react-icons/fa'; // Import icons for dark/light mode
+import { FaSun, FaMoon, FaSearch } from 'react-icons/fa'; // Import icons for dark/light mode
 
 const Header = ({ toggleSidebar, userEmail }) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -47,7 +47,7 @@ const Header = ({ toggleSidebar, userEmail }) => {
       <h1 className="header-title">Dashboard</h1>
 
       {/* Search Bar */}
-       {/* Search Bar */}
+      {/* Search Bar */}
       <div className="search-container">
         <input
           type="text"
@@ -81,22 +81,24 @@ const Header = ({ toggleSidebar, userEmail }) => {
         </div>
 
         {/* Dark/Light Mode Dropdown */}
+
         <div className="theme-container">
           <button className="theme-toggle-btn" onClick={handleThemeDropdownToggle}>
             {theme === 'light' ? <FaMoon /> : <FaSun />}
           </button>
           {themeDropdownOpen && (
             <div className="dropdown">
-              <a className="dropdown-item" onClick={() => handleOptionClick("light")}>
+              <button className="dropdown-item" onClick={() => handleOptionClick("light")}>
                 <FaSun className="theme-toggle-icon" /> Light Mode
-              </a>
-              <a className="dropdown-item" onClick={() => handleOptionClick("dark")}>
+              </button>
+              <button className="dropdown-item" onClick={() => handleOptionClick("dark")}>
                 <FaMoon className="theme-toggle-icon" /> Dark Mode
-              </a>
+              </button>
             </div>
           )}
         </div>
       </div>
+
     </nav>
   );
 };

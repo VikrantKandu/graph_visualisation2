@@ -2,7 +2,7 @@
 import React from 'react';
 import './Dashboard.css';
 
-const Dashboard = () => {
+const Dashboard = ({isOpen}) => {
   return (
     <div className="dashboard">
     

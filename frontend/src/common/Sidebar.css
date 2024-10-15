@@ -1,0 +1,148 @@
+/* src/common/Sidebar.css */
+
+/* src/common/Sidebar.css */
+
+/* Existing sidebar styles... */
+
+/* src/common/Sidebar.css */
+
+.sidebar {
+  /* width: 250px;  */
+  height: calc(100vh - 60px); /* Full height minus header height */
+  background-color: var(--sidebar-bg-color); /* Sidebar background */
+  color: var(--text-color); /* Text color */
+  position: fixed; /* Fixed to the left */
+  top: 60px; /* Below the header */
+  left: 0; /* Aligns to the left */
+  transition: width 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: hidden; /* Enable vertical scrolling */
+  overflow-x: hidden;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 20px 0;
+  margin: 0;
+}
+
+
+/* Make sure to keep the padding consistent */
+.menu-item {
+  padding: 10px 20px; /* Adjust padding as needed */
+}
+
+
+.sidebar.closed {
+  width: 80px; /* Adjusted width when closed */
+}
+
+.sidebar .logo-container {
+  padding: 30px;
+  text-align: center;
+}
+
+.sidebar .logo {
+  width: 40px;
+  height: 40px;
+}
+
+.sidebar .logo-text {
+  margin-left: 10px;
+  font-size: 18px;
+  display: inline-block;
+}
+
+.sidebar.closed .logo-text {
+  display: none; /* Hide logo text when closed */
+}
+
+.sidebar .menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0; /* Space above the menu */
+}
+
+.sidebar .menu-item {
+  padding: 10px 20px;
+}
+
+.sidebar .menu-item a {
+  display: flex;
+  align-items: center; /* Center icon and text */
+  color: var(--text-color); /* Use variable for text color */
+  text-decoration: none;
+  padding: 10px; /* Padding around links */
+  transition: background-color 0.3s; /* Smooth background color change */
+}
+
+.sidebar .menu-item a:hover {
+  background-color: var(--primary-color); /* Change background on hover */
+  color: var(--button-text-color); /* Change text color on hover */
+}
+
+.sidebar .menu-item .badge {
+  margin-left: auto;
+  background-color: #007bff; /* Badge background color */
+  padding: 4px 8px; /* Padding for badge */
+  border-radius: 12px; /* Rounded corners */
+}
+
+.sidebar .toggle-btn {
+  position: absolute;
+  right: -15px; /* Align the toggle icon to the right of the sidebar */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for exact centering */
+  background-color: var(--sidebar-bg-color); /* Background matches sidebar */
+  border: none; /* No border */
+  color: var(--text-color); /* Text color */
+  padding: 10px; /* Padding for the button */
+  border-radius: 50%; /* Round shape */
+  cursor: pointer; /* Pointer on hover */
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+.sidebar.closed .toggle-btn {
+  right: -5px; /* Adjust when closed to maintain visibility */
+}
+
+.sidebar .toggle-btn:hover {
+  background-color: #495057; /* Darker background on hover */
+}
+
+/* Remove bullet points from submenu */
+.menu-list, .submenu {
+  list-style: none; /* Removes default bullet points */
+  padding-left: 0; /* Removes left padding */
+  margin-left: 0; /* Adjusts the margin to align with the parent menu */
+}
+
+/* Ensure submenu items align properly */
+.submenu-item a {
+  padding-left: 20px; /* Align submenu icons and text properly */
+}
+
+/* Sidebar Menu and Submenu hover effect */
+.sidebar .menu-item a:hover,
+.sidebar .submenu-item a:hover {
+  background-color: var(--primary-color); /* Change background on hover */
+  color: var(--button-text-color); /* Change text color on hover */
+}
+
+/* Maintain submenu styling similar to menu items */
+.sidebar .submenu-item a {
+  display: flex;
+  align-items: center; /* Center icon and text */
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 8px 10px; /* Adjust padding for submenu items */
+  transition: background-color 0.3s;
+}
+
+
+
+
+
+

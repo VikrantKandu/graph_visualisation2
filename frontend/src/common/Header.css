@@ -1,0 +1,110 @@
+/* src/common/Header.css */
+.navbar header {
+  background-color: var(--header-bg-color);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-sizing: border-box; /* Ensure padding is included in total height */
+}
+
+.header-title {
+  flex-grow: 1; /* Allow the title to grow and take available space */
+  display: flex;
+  align-items: center; /* Center the title vertically */
+}
+
+.search-container {
+  position: relative; /* Position relative for absolute positioning of icon */
+  margin: 0 20px;
+}
+
+.search-bar {
+  padding: 5px 30px; /* Add padding to make space for the icon */
+  border: 1px solid var(--input-border-color);
+  border-radius: 4px;
+  box-sizing: border-box; /* Include padding in width/height */
+  width: 200px; /* Set a width for the input */
+}
+
+.search-bar:focus {
+  border-color: var(--focus-border-color); /* Change border color on focus */
+}
+
+.search-icon {
+  position: absolute; /* Position absolute to place inside input */
+  left: 10px; /* Position from the left */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust vertical alignment */
+  color: var(--text-color); /* Adjust color as needed */
+  pointer-events: none; /* Prevent click events on the icon */
+}
+
+/* Adjusted Navbar Right to Flex and Center Items */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Push this section to the right */
+}
+
+.profile-container {
+  position: relative; /* Ensure dropdown position is relative to this container */
+}
+
+.dropdown {
+  position: absolute; /* Position the dropdown relative to the profile container */
+  right: 0; /* Align dropdown to the right */
+  top: 100%; /* Move dropdown below the profile image */
+  background: var(--dropdown-bg-color); /* Dropdown background */
+  border: 1px solid var(--dropdown-border-color); /* Dropdown border */
+  border-radius: 4px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Shadow for dropdown */
+  z-index: 1000; /* Ensure dropdown is above other content */
+}
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.theme-container {
+  position: relative; /* Ensure dropdown position is relative to this container */
+  margin-left: 15px; /* Spacing between profile and theme button */
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 20px; /* Adjust size as necessary */
+}
+
+.dropdown-item {
+  padding: 10px 15px; /* Padding for dropdown items */
+  color: var(--text-color); /* Text color */
+  text-decoration: none; /* Remove underline */
+  display: block; /* Ensure items stack vertically */
+}
+
+.dropdown-item:hover {
+  background-color: var(--hover-bg-color); /* Change background on hover */
+}
+
+.dropdown-divider {
+  height: 1px; /* Divider height */
+  background-color: var(--divider-color); /* Divider color */
+  margin: 5px 0; /* Margin around divider */
+}
+
+.header-logo {
+  height: 60%; /* Adjust based on header height */
+  max-height: 40px; /* Ensure it doesn't exceed this height */
+  width: auto; /* Maintain aspect ratio */
+}

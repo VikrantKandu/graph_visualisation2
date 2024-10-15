@@ -1,0 +1,44 @@
+/* src/Dashboard/Dashboard.css */
+/* src/Dashboard/Dashboard.css */
+.dashboard {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 20px;
+  }
+  
+  .dashboard .card {
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-content {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; /* Ensure cards wrap based on screen size */
+  }
+  
+  .card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex: 1 1 300px; /* Adjust card width based on screen size */
+  }
+  
+  .card h2 {
+    margin-top: 0;
+  }
+  
+  .card p {
+    margin-bottom: 0;
+  }
+  

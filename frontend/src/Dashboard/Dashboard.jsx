@@ -5,8 +5,9 @@ import './Dashboard.css';
 const Dashboard = () => {
   return (
     <div className="dashboard">
-      <h1>Welcome to the Dashboard</h1>
+    
       <div className="dashboard-content">
+      <h1>Welcome to the Dashboard</h1>
         <div className="card">
           <h2>Card 1</h2>
           <p>This is some content inside a dashboard card.</p>

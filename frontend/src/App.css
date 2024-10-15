@@ -98,3 +98,41 @@ body {
 .theme-toggle:hover {
   opacity: 0.8;
 }
+
+
+.theme-container {
+  position: relative;
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 1000; /* Make sure it appears above other elements */
+  width: 150px; /* Set a width or max-width */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black; /* Change as needed */
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0; /* Change hover color */
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .dropdown {
+    width: 100%; /* Full width on smaller screens */
+  }
+}

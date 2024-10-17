@@ -40,10 +40,10 @@ const Header = ({ toggleSidebar, userEmail }) => {
   };
   return (
     <nav className="navbar header">
-      <a className="navbar-brand" href="#" onClick={toggleSidebar}>
+      {/* <a className="navbar-brand" href="#" onClick={toggleSidebar}>
         <img src={logo} alt="Company Logo" className="header-logo" />
         Admin Panel
-      </a>
+      </a> */}
       <h1 className="header-title">Dashboard</h1>
 
       {/* Search Bar */}

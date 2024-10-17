@@ -1,72 +1,62 @@
 /* src/common/Sidebar.css */
 
-/* src/common/Sidebar.css */
-
 /* Existing sidebar styles... */
 
-/* src/common/Sidebar.css */
-
 .sidebar {
-  /* width: 250px;  */
-  height: calc(100vh - 60px); /* Full height minus header height */
+  width: 150px; 
+  height: 100vh; /* Full height of the viewport */
   background-color: var(--sidebar-bg-color); /* Sidebar background */
   color: var(--text-color); /* Text color */
   position: fixed; /* Fixed to the left */
-  top: 60px; /* Below the header */
   left: 0; /* Aligns to the left */
+  top: 0; /* Aligns to the top */
   transition: width 0.3s ease, transform 0.3s ease;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  overflow-y: hidden; /* Enable vertical scrolling */
+  justify-content: flex-start; /* Start at the top */
+  overflow-y: auto; /* Enable vertical scrolling */
   overflow-x: hidden;
 }
 
 .menu-list {
   list-style: none;
-  padding: 20px 0;
-  margin: 0;
+  padding: 0;
+  margin: 40px 0; /* Space above the menu */
 }
 
-
-/* Make sure to keep the padding consistent */
 .menu-item {
-  padding: 10px 20px; /* Adjust padding as needed */
+  display: flex;
+  align-items: center;
+  padding: 15px 20px; /* Adjust padding as needed */
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
+.menu-item:hover {
+  background-color: #34495e; /* Hover background color */
+}
 
+.menu-text {
+  margin-left: 10px; /* Space between icon and text */
+}
+/* 
 .sidebar.closed {
-  width: 80px; /* Adjusted width when closed */
+  width: 80px; 
+} */
+
+.logo-section {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
 }
 
-.sidebar .logo-container {
-  padding: 30px;
-  text-align: center;
-}
-
-.sidebar .logo {
-  width: 40px;
-  height: 40px;
-}
-
-.sidebar .logo-text {
-  margin-left: 10px;
-  font-size: 18px;
-  display: inline-block;
+.sidebar-logo {
+  width: 40%; /* Adjust based on logo size */
+  max-width: 40px; /* Maximum logo width */
 }
 
 .sidebar.closed .logo-text {
   display: none; /* Hide logo text when closed */
-}
-
-.sidebar .menu-list {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0; /* Space above the menu */
-}
-
-.sidebar .menu-item {
-  padding: 10px 20px;
 }
 
 .sidebar .menu-item a {
@@ -113,25 +103,16 @@
 }
 
 /* Remove bullet points from submenu */
-.menu-list, .submenu {
+.submenu {
   list-style: none; /* Removes default bullet points */
   padding-left: 0; /* Removes left padding */
   margin-left: 0; /* Adjusts the margin to align with the parent menu */
 }
 
-/* Ensure submenu items align properly */
 .submenu-item a {
   padding-left: 20px; /* Align submenu icons and text properly */
 }
 
-/* Sidebar Menu and Submenu hover effect */
-.sidebar .menu-item a:hover,
-.sidebar .submenu-item a:hover {
-  background-color: var(--primary-color); /* Change background on hover */
-  color: var(--button-text-color); /* Change text color on hover */
-}
-
-/* Maintain submenu styling similar to menu items */
 .sidebar .submenu-item a {
   display: flex;
   align-items: center; /* Center icon and text */
@@ -141,8 +122,45 @@
   transition: background-color 0.3s;
 }
 
+.sidebar .menu-item a:hover,
+.sidebar .submenu-item a:hover {
+  background-color: var(--primary-color); /* Change background on hover */
+  color: var(--button-text-color); /* Change text color on hover */
+}
 
 
 
 
 
+
+
+
+
+
+/* Main container that holds both the sidebar and content */
+
+
+.sidebar.open {
+  width: 150px;
+}
+
+.sidebar.closed {
+  width: 80px; /* Adjust width when sidebar is closed */
+}
+
+
+
+.sidebar .toggle-btn:hover {
+  background-color: #495057;
+}
+
+/* Main content area */
+.main-content {
+  margin-left: 150px; /* Adjust based on the width of the open sidebar */
+  flex-grow: 1; /* Allow the content to take the remaining space */
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar.closed + .main-content {
+  margin-left: 80px; /* Adjust based on the width of the closed sidebar */
+}

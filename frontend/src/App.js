@@ -77,9 +77,51 @@
 
 // src/App.js
 // src/App.js
+// import React, { useState } from 'react';
+// import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+// import Layout from './common/Layout';
+// import Login from './login/Login';
+// import Dashboard from './Dashboard/Dashboard';
+// import Sidebar from './common/Sidebar'; // Import Sidebar
+// import './App.css'; // Main app styles
+
+// function App() {
+//   const [isAuthenticated, setIsAuthenticated] = useState(false);
+//   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+//   const handleLogin = (status) => {
+//     setIsAuthenticated(status);
+//   };
+
+//   const toggleSidebar = () => {
+//     setIsSidebarOpen(!isSidebarOpen);
+//   };
+
+//   return (
+//     <Router>
+//       {isAuthenticated ? (
+//         <Layout>
+//           <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} /> {/* Pass props to Sidebar */}
+//           <div className={`dashboard-container ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
+//             <Routes>
+//               <Route path="/dashboard" element={<Dashboard />} />
+//               <Route path="*" element={<Navigate to="/dashboard" />} />
+//             </Routes>
+//           </div>
+//         </Layout>
+//       ) : (
+//         <Login onLogin={handleLogin} />
+//       )}
+//     </Router>
+//   );
+// }
+
+// export default App;
+
+
+
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Layout from './common/Layout';
 import Login from './login/Login';
 import Dashboard from './Dashboard/Dashboard';
 import Sidebar from './common/Sidebar'; // Import Sidebar
@@ -100,15 +142,17 @@ function App() {
   return (
     <Router>
       {isAuthenticated ? (
-        <Layout>
-          <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} /> {/* Pass props to Sidebar */}
+        <>
+        <Sidebar />
+          {/* <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} /> */}
+           {/* Pass props to Sidebar */}
           <div className={`dashboard-container ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="*" element={<Navigate to="/dashboard" />} />
             </Routes>
           </div>
-        </Layout>
+        </>
       ) : (
         <Login onLogin={handleLogin} />
       )}

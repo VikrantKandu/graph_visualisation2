@@ -1,7 +1,7 @@
 // src/common/Sidebar.js
 
 import React, { useState } from 'react'; 
-// import { Link } from 'react-router-dom';
+import logo from '../assets/vik.png';
 import { FaAngleLeft, FaAngleRight, FaChartBar, FaClipboardList, FaComments, FaWrench, FaUserShield, FaCog } from 'react-icons/fa';
 import './Sidebar.css';
 import SecondarySidebar from './SecondarySidebar'; // Import secondary sidebar
@@ -21,6 +21,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     setCurrentMenu('');
   };
 
+
   return (
     <div className="sidebar-container">
       {/* Primary Sidebar */}
@@ -28,6 +29,10 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <button className="toggle-btn" onClick={toggleSidebar}>
           {isOpen ? <FaAngleLeft /> : <FaAngleRight />}
         </button>
+           {/* Logo Section */}
+        <div className="logo-section">
+          <img src={logo} alt="Logo" className="sidebar-logo" />
+        </div>
         <ul className="menu-list">
           <li className="menu-item" onClick={() => openSecondarySidebar('Dashboard')}>
             <FaChartBar /> {isOpen && <span className="menu-text">Dashboard</span>}
@@ -63,3 +68,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 };
 
 export default Sidebar;
+
+
+
+

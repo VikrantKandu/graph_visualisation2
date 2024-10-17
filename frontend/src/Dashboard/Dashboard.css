@@ -4,6 +4,7 @@
     background-color: var(--background-color);
     color: var(--text-color);
     padding: 20px;
+    margin-left: 100ps;
   }
   
   .dashboard .card {
@@ -18,6 +19,7 @@
   h1 {
     font-size: 2rem;
     margin-bottom: 20px;
+    text-align: center;
   }
   
   .dashboard-content {
@@ -40,5 +42,37 @@
   
   .card p {
     margin-bottom: 0;
+  }
+  
+  /* .dashboard {
+    padding: 20px;
+  } */
+  
+  .dashboard-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .card {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  #h1{
+    align-items: center;
+  }
+
+  /* .dashboard {
+    padding: 20px;
+  } */
+  
+  .dashboard-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
   

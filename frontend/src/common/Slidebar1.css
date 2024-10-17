@@ -1,0 +1,171 @@
+/* src/common/Sidebar.css */
+
+/* Primary Sidebar Styles */
+.sidebar {
+    width: 150px; /* Default width when open */
+    height: 100vh; /* Full height */
+    background-color: var(--sidebar-bg-color); /* Sidebar background */
+    color: var(--text-color); /* Text color */
+    position: fixed; /* Fixes sidebar on the left */
+    left: 0; /* Align to the left */
+    top: 0; /* Starts at the top */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden; /* Prevents scrolling inside sidebar */
+    transition: width 0.3s ease, transform 0.3s ease; /* Smooth transition for width */
+  }
+  
+  .sidebar.closed {
+    width: 80px; /* Width when closed */
+  }
+  
+  .sidebar .toggle-btn {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    right: -15px; /* Places the toggle button outside the sidebar */
+    transform: translateY(-50%); /* Centers button */
+    background-color: var(--sidebar-bg-color); /* Match sidebar background */
+    border: none;
+    color: var(--text-color);
+    padding: 10px;
+    border-radius: 50%; /* Make the button circular */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar.closed .toggle-btn {
+    right: -5px; /* Adjust position when sidebar is closed */
+  }
+  
+  .sidebar .toggle-btn:hover {
+    background-color: #495057; /* Darken button on hover */
+  }
+  
+  /* Header Section */
+.navbar-brand {
+    display: flex;
+    align-items: center; /* Align logo and text vertically */
+    cursor: pointer; /* Pointer cursor on hover */
+    text-decoration: none; /* Remove default underline for links */
+    color: var(--text-color); /* Text color */
+  }
+  
+  .header-logo {
+    width: 40px; /* Width of the logo image */
+    height: 40px; /* Height of the logo image */
+    margin-right: 10px; /* Space between the logo and text */
+  }
+  
+  .navbar-brand:hover {
+    color: var(--primary-color); /* Change text color on hover */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .header-logo {
+      width: 30px; /* Smaller logo for mobile */
+      height: 30px;
+    }
+  
+    .navbar-brand {
+      font-size: 14px; /* Reduce font size for smaller screens */
+    }
+  }
+  
+  
+  .sidebar.closed .logo-text {
+    display: none; /* Hide logo text when sidebar is closed */
+  }
+  
+  /* Sidebar Menu */
+  .menu-list {
+    list-style: none; /* Remove bullets */
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu-item {
+    padding: 10px 20px; /* Space around menu items */
+  }
+  
+  .sidebar .menu-item a {
+    display: flex;
+    align-items: center;
+    color: var(--text-color); /* Link color */
+    text-decoration: none; /* Remove underline */
+    padding: 10px;
+    transition: background-color 0.3s; /* Smooth hover transition */
+  }
+  
+  .sidebar .menu-item a:hover {
+    background-color: var(--primary-color); /* Highlight on hover */
+    color: var(--button-text-color); /* Change text color on hover */
+  }
+  
+  .sidebar.closed .menu-item a {
+    justify-content: center; /* Center icons when closed */
+  }
+  
+  .sidebar .menu-text {
+    margin-left: 10px;
+  }
+  
+  .sidebar.closed .menu-text {
+    display: none; /* Hide menu text when closed */
+  }
+  
+  /* Secondary Sidebar Styles */
+  .secondary-sidebar {
+    width: 250px; /* Width of the secondary sidebar */
+    height: 100vh;
+    background-color: var(--secondary-bg-color); /* Background of secondary sidebar */
+    color: var(--text-color);
+    position: fixed;
+    right: 0; /* Aligns the secondary sidebar to the right */
+    top: 0;
+    transition: transform 0.3s ease; /* Smooth transition when opening/closing */
+    transform: translateX(100%); /* Hidden by default */
+  }
+  
+  .secondary-sidebar.open {
+    transform: translateX(0); /* Reveal when open */
+  }
+  
+  .secondary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--header-bg-color);
+  }
+  
+  .secondary-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1.5em;
+    padding: 0;
+  }
+  
+  .secondary-content {
+    padding: 20px;
+    overflow-y: auto; /* Allows scrolling if content is too tall */
+  }
+  
+  /* Scrollbar customization */
+  .secondary-sidebar ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .secondary-sidebar ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* Custom scrollbar color */
+    border-radius: 4px;
+  }
+  

@@ -125,6 +125,11 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './login/Login';
 import Dashboard from './Dashboard/Dashboard';
 import Sidebar from './common/Sidebar'; // Import Sidebar
+import SecurityGraph from './Dashboard/sidemenu/explorer/SecurityGraph';
+import AnotherComponent from './Dashboard/sidemenu/explorer/AnotherComponent';
+import CloudServiceSelector from './Dashboard/sidemenu/inventory/CloudServiceSelector';
+import Cloud_Function from './Dashboard/sidemenu/explorer/Architecture/Cloud_Function';
+
 import './App.css'; // Main app styles
 
 function App() {
@@ -143,13 +148,17 @@ function App() {
     <Router>
       {isAuthenticated ? (
         <>
-        <Sidebar />
-          {/* <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} /> */}
+        {/* <Sidebar /> */}
+          <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
            {/* Pass props to Sidebar */}
           <div className={`dashboard-container ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="*" element={<Navigate to="/dashboard" />} />
+              <Route path="/security_graph" element={<SecurityGraph />} />
+              <Route path="/another-component" element={<AnotherComponent />} />
+              <Route path="/InventoryCloudService" element={<CloudServiceSelector />} />
+              <Route path="/cloudfunction" element={<Cloud_Function />} />
             </Routes>
           </div>
         </>

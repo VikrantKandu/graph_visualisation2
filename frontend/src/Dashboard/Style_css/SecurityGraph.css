@@ -1,0 +1,264 @@
+/* General page styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main container with heading */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Header styles */
+.headerr {
+    display: flex;
+    align-items: center; /* Center align vertically */
+    justify-content: space-between; /* Space out header elements */
+    padding: 10px; /* Spacing */
+    margin-bottom: 20px; /* Space below header */
+    width: 100%; /* Full width */
+    background-color: #fff; /* Background color for header */
+}
+
+/* Header container for title and buttons */
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Space between heading and buttons */
+    align-items: center; /* Center vertically */
+    width: 100%; /* Full width */
+}
+
+/* Left section for icons */
+.header-left {
+    display: flex;
+    gap: 15px; /* Space between icons */
+    margin-left: 0%;
+}
+
+/* Icon styles */
+.header-icon {
+    font-size: 24px; /* Size of the icons */
+    cursor: pointer; /* Cursor pointer on hover */
+    color: #007bff; /* Primary color for icons */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+.header-icon:hover {
+    color: #0056b3; /* Darker color on hover */
+}
+
+/* Right section for search box and notification */
+.header-right {
+    display: flex;
+    align-items: center; /* Center align search and notification */
+}
+
+/* Search box styles */
+.header-right input {
+    padding: 10px;
+    border: 1px solid #ccc; /* Light border for input */
+    border-radius: 5px; /* Rounded corners */
+    margin-right: 10px; /* Space between search and notification */
+    font-size: 16px; /* Font size */
+    width: 200px; /* Fixed width for search input */
+}
+
+/* Notification icon styles */
+.notification-icon {
+    font-size: 24px; /* Size of the notification icon */
+    cursor: pointer; /* Cursor pointer on hover */
+    color: #007bff; /* Primary color */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+.notification-icon:hover {
+    color: #0056b3; /* Darker color on hover */
+}
+
+/* Container for buttons and component display */
+.left-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    margin-right: 100px;
+}
+
+/* Right buttons container */
+.right-buttons {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 10px; /* Space between buttons */
+    margin-right: 20px; /* Margin on the right for some spacing */
+    color: none;
+}
+
+/* Button styles */
+button {
+    padding: 8px 16px; /* Smaller padding for smaller buttons */
+    font-size: 14px; /* Smaller font size */
+    color: #fff;
+    border: none;
+    border-radius: 4px; /* Slightly smaller border radius */
+    cursor: pointer;
+    margin: 5px 0; /* Reduced margin for spacing */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* Component display styles */
+.component-display {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    width: 70%;
+    text-align: center;
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+/* Security Graph styles */
+.securitygraph {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+/* Heading styles */
+.heading {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Dropdown menu styles */
+.project-dropdown {
+    position: relative; /* Position relative for dropdown positioning */
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 40px; /* Adjust based on your header height */
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc; /* Light border for dropdown */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    z-index: 1000; /* Ensure dropdown appears above other elements */
+    width: 150px; /* Set a fixed width for dropdown */
+}
+
+.dropdown-item {
+    padding: 10px 20px; /* Spacing for dropdown items */
+    cursor: pointer; /* Cursor pointer on hover */
+    transition: background-color 0.3s; /* Smooth background transition */
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0; /* Light background on hover */
+}
+
+/* Save icon styles */
+.save-icon {
+    margin-right: 5px; /* Space between icon and text */
+}
+
+/* Refresh and options icon styles */
+.refresh-icon,
+.options-icon {
+    margin-right: 5px; /* Space between icon and text */
+}
+
+/* Responsive search box styles */
+.body-search input {
+    width: 100%; /* Default full width */
+    max-width: 700px; /* Increase max width for larger screens */
+    min-width: 300px; /* Increase minimum width for smaller screens */
+    height: 40px;
+    padding: 10px;
+    font-size: 1rem; /* Use rem for scalable font size */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box; /* Ensures padding doesn't affect overall width */
+}
+/* Styles when the screen is smaller than 1024px */
+@media (max-width: 1024px) {
+    .header-container {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center;
+        text-align: center;
+    }
+
+    .left-buttons, .right-buttons {
+        margin: 10px 0; /* Add margin for spacing */
+    }
+}
+
+/* Adjust component display for smaller screens */
+@media (max-width: 768px) {
+    .component-display {
+        width: 90%; /* Use a percentage for width */
+    }
+}
+
+/* Adjust flex container for mobile screens */
+@media (max-width: 480px) {
+    .main-container {
+        padding: 10px; /* Reduce padding */
+    }
+
+    .header-container {
+        flex-direction: column;
+        gap: 10px; /* Space between stacked items */
+    }
+
+    .left-buttons, .right-buttons {
+        flex-direction: column; /* Stack buttons */
+        margin: 5px 0;
+    }
+
+    button {
+        width: 100%; /* Full width buttons on mobile */
+        font-size: 12px; /* Smaller font size */
+    }
+
+    .component-display {
+        width: 100%; /* Full width for content */
+        padding: 10px; /* Less padding */
+    }
+
+    .heading {
+        font-size: 24px; /* Smaller font size */
+        margin-bottom: 20px;
+    }
+
+    .header-icon, .notification-icon {
+        font-size: 20px; /* Adjust icon size */
+    }
+}
+
+/* Styles when the screen is smaller than 768px (tablets) */
+@media (max-width: 768px) {
+    .body-search input {
+        width: 90%; /* Increase width for tablets */
+        font-size: 0.9rem; /* Slightly smaller font size on small screens */
+    }
+}
+
+/* Styles when the screen is smaller than 480px (mobile devices) */
+@media (max-width: 480px) {
+    .body-search input {
+        width: 95%; /* Increase width for mobile */
+        height: 35px; /* Reduce height for small screens */
+        font-size: 0.8rem; /* Further reduce font size for mobile */
+    }
+}

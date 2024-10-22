@@ -1,10 +1,27 @@
 /* src/common/Sidebar.css */
 
 /* Existing sidebar styles... */
+/* */
 
+
+.menu-item {
+  cursor: pointer;
+}
+
+.menu-content {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center align the icon and text */
+}
+
+.menu-text {
+  margin-bottom: 4px; /* Space between text and icon */
+}
+
+/*  */
 .sidebar {
   width: 150px; 
-  height: 100vh; /* Full height of the viewport */
+  height: 102vh; /* Full height of the viewport */
   background-color: var(--sidebar-bg-color); /* Sidebar background */
   color: var(--text-color); /* Text color */
   position: fixed; /* Fixed to the left */

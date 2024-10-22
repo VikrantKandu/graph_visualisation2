@@ -1,0 +1,106 @@
+/* Graph.css */
+
+/* body, html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+} */
+
+
+
+#banner {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+#controls {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+
+#graph-frame {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    position: relative;
+    width: 100%;
+    height: 70vh;
+}
+
+#svg_graph {
+    width: 100%;
+    height: 100%;
+    
+}
+
+#text-info {
+    text-align: center;
+    margin: 05px 0;
+}
+
+text {
+    font-size: 12px;
+    fill: black;
+}
+
+  .modal-container {
+    position: fixed;
+    bottom: 20px; /* Positioning the modal 20px from the bottom */
+    right: 20px;  /* Modal opens on the right side by default */
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Modal Title */
+.modal-title {
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: center; /* Center align the title */
+}
+
+/* Modal Details */
+.modal-details {
+    flex-direction: column;
+    align-items: flex-start; /* Align details to the start */
+}
+
+/* Close Button */
+.close-button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    align-self: flex-end; /* Align close button to the right */
+}
+
+.close-button:hover {
+    color: black;
+}
+
+.graph-container {
+    position: relative;
+    width: 100%;
+    height: 100%; /* Set a height for the SVG container */
+    border: 1px solid #ccc; /* Optional border */
+  }
+  

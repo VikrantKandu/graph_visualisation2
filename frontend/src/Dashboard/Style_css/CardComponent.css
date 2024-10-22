@@ -1,0 +1,126 @@
+/* General Styles */
+body, html {
+  margin: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Layout for Search Box and Columns */
+.layout {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  height: 100vh;
+}
+
+/* Search Box Styles */
+.search-box {
+  padding: 16px;
+  border-bottom: 1px solid #ddd; /* Divider below search box */
+  background-color: #f9f9f9; /* Light background for the search box */
+}
+
+/* Three-column layout */
+.three-column-layout {
+  display: flex;
+  flex: 1; /* Columns will take remaining space */
+}
+
+/* Column Styles */
+.column {
+  flex: 1; /* Each column will take equal space */
+  padding: 16px;
+  border-right: 1px solid #ddd; /* Add right border for column */
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: calc(100vh - 64px); /* Adjust height for scrollbar to appear correctly */
+  background-color: #fff; /* White background for the columns */
+  position: relative; /* Allow positioning of inner content */
+}
+
+/* Remove right border for the last column */
+.column:last-child {
+  border-right: none; /* Remove border from last column */
+}
+
+/* Title Styles */
+.MuiTypography-h6 {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* Resource Card Styles */
+.resource-card {
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px; /* Spacing between cards */
+  min-height: 100px; /* Set a minimum height for the cards */
+  transition: height 0.3s ease; /* Smooth transition for height changes */
+}
+
+/* List Styles */
+.MuiListItem-root {
+  transition: background-color 0.3s;
+}
+
+.MuiListItem-root:hover {
+  background-color: #f0f0f0; /* Light hover effect */
+}
+
+.MuiListItem.selected {
+  background-color: #e0e0e0; /* Highlight selected item */
+}
+
+/* Divider Styles */
+.MuiDivider-root {
+  margin: 16px 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .three-column-layout {
+    flex-direction: column; /* Stack the columns vertically on small screens */
+  }
+
+  .column {
+    border-right: none; /* Remove border on small screens */
+    border-bottom: 1px solid #ddd; /* Add bottom border */
+  }
+
+  .column:last-child {
+    border-bottom: none; /* Remove bottom border for last column */
+  }
+
+  /* Adjust padding for smaller screens */
+  .column, .search-box, .resource-card {
+    padding: 12px; /* Slightly smaller padding */
+  }
+
+  /* Adjust font sizes for mobile */
+  .MuiTypography-h6 {
+    font-size: 1.2em; /* Increase title font size */
+  }
+
+  .resource-card {
+    min-height: 80px; /* Adjust minimum height for smaller screens */
+  }
+}
+
+/* Custom Scrollbar Styles */
+.column::-webkit-scrollbar {
+  width: 8px; /* Thinner scrollbar */
+  height: 10px;
+}
+
+.column::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Track color */
+}
+
+.column::-webkit-scrollbar-thumb {
+  background: #ccc; /* Scrollbar thumb color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.column::-webkit-scrollbar-thumb:hover {
+  background: #aaa; /* Color on hover */
+}

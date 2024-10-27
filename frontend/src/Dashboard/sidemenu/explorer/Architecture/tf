@@ -1,0 +1,150 @@
+   <!-- {/* <div className="subnets-container">
+                <div className="public-subnets">
+                  <h3>Public Subnets</h3>
+                  {subnets.length > 0 ? (
+                    subnets.map((subnet, index) => (
+                      <div key={index} className="subnet-box">
+                        {subnets || 'Unknown Public Subnet'}
+                      </div>
+                    ))
+                  ) : (
+                    <div>No public subnets found.</div>
+                  )}
+                </div>
+
+                <div className="private-subnets">
+                  <h3>Private Subnets</h3>
+                  {subnets.length > 0 ? (
+                    subnets.map((subnet, index) => (
+                      <div key={index} className="subnet-box">
+                        {subnets || 'Unknown Private Subnet'}
+                      </div>
+                    ))
+                  ) : (
+                    <div>No private subnets found.</div>
+                  )}
+                </div>
+              </div> */} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              // <div className="cloud-container">
+    //   <div className="dropdowns">
+    //     <select value={selectedAccount} onChange={handleAccountChange}>
+    //       <option value="">Select AWS Account</option>
+    //       {accounts.map((account, index) => (
+    //         <option key={index} value={account.name}>
+    //           {account.name}
+    //         </option>
+    //       ))}
+    //     </select>
+
+    //     <select multiple value={selectedRegions} onChange={handleRegionChange}>
+    //       <option value="">Select Region(s)</option>
+    //       {regions.map((region, index) => (
+    //         <option key={index} value={region.name}>
+    //           {region.name}
+    //         </option>
+    //       ))}
+    //     </select>
+    //   </div>
+
+    //   {selectedAccount && selectedRegions.length > 0 && (
+    //     <>
+    //       <div className="virtual-cloud">
+    //         <h2>Virtual Cloud</h2>
+
+    //         <Container>
+    //           {controlledServices.length > 0 ? (
+    //             <Row>
+    //               {controlledServices.map((service, index) => (
+    //                 <Col key={index} xs={12} sm={6} md={4} lg={3} className="service-box controlled-service">
+    //                   {service.name || 'Unknown Service'}
+    //                 </Col>
+    //               ))}
+    //             </Row>
+    //           ) : (
+    //             <Row><Col>No controlled services found.</Col></Row>
+    //           )}
+    //         </Container>
+
+    //         <Container>
+
+    //           {monitoringServices.length > 0 ? (
+    //             <Row>
+    //               {monitoringServices.map((service, index) => (
+    //                 <Col key={index} xs={12} sm={6} md={4} lg={3} className="service-box monitoring-service">
+    //                   {service.name || 'Unknown Service'}
+    //                 </Col>
+    //               ))}
+    //             </Row>
+    //           ) : (
+    //             <Row><Col>No monitoring services found.</Col></Row>
+    //           )}
+    //         </Container>
+
+    //         <h3>VPCs</h3>
+    //         {vpcs.length > 0 ? (
+    //           vpcs.map((vpc, index) => (
+    //             <div key={index}>{vpc || 'Unknown VPC'}</div>
+    //           ))
+    //         ) : (
+    //           <div>No VPCs found.</div>
+    //         )}
+
+    //         <div className="subnets-container">
+    //           <h3>Public Subnets</h3>
+    //           {publicSubnets.length > 0 ? (
+    //             publicSubnets.map(subnet => (
+    //               <div key={subnet.name} className="subnet-box">
+    //                 {subnet.name || 'Unknown Public Subnet'}
+    //               </div>
+    //             ))
+    //           ) : (
+    //             <div>No public subnets found.</div>
+    //           )}
+
+    //           <h3>Private Subnets</h3>
+    //           {privateSubnets.length > 0 ? (
+    //             privateSubnets.map(subnet => (
+    //               <div key={subnet.name} className="subnet-box">
+    //                 {subnet.name || 'Unknown Private Subnet'}
+    //               </div>
+    //             ))
+    //           ) : (
+    //             <div>No private subnets found.</div>
+    //           )}
+    //         </div>
+    //       </div>
+
+    //       <h3>External Services</h3>
+    //       {externalServices.length > 0 ? (
+    //         externalServices.map((service, index) => (
+    //           <div key={index} className="service-box external-service">
+    //             {service || 'Unknown External Service'}
+    //           </div>
+    //         ))
+    //       ) : (
+    //         <div>No external services found.</div>
+    //       )}
+    //     </>
+    //   )}
+    // </div>

@@ -129,8 +129,9 @@ import SecurityGraph from './Dashboard/sidemenu/explorer/SecurityGraph';
 import AnotherComponent from './Dashboard/sidemenu/explorer/AnotherComponent';
 import CloudServiceSelector from './Dashboard/sidemenu/inventory/CloudServiceSelector';
 import Cloud_Function from './Dashboard/sidemenu/explorer/Architecture/Cloud_Function';
-
+import QueryGraph from './Dashboard/sidemenu/explorer/Architecture/QueryBasisGraph';
 import './App.css'; // Main app styles
+import QueryBasisGraph from './Dashboard/sidemenu/explorer/Architecture/QueryBasisGraph';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -159,6 +160,7 @@ function App() {
               <Route path="/another-component" element={<AnotherComponent />} />
               <Route path="/InventoryCloudService" element={<CloudServiceSelector />} />
               <Route path="/cloudfunction" element={<Cloud_Function />} />
+              <Route path="/queryGenerateGraph" element={<QueryBasisGraph />} />
             </Routes>
           </div>
         </>

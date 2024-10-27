@@ -1,0 +1,61 @@
+.cloud-container {
+    width: 80%;
+    margin: 20px auto;
+  }
+  
+  .dropdowns {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .virtual-cloud {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    background-color: #fafafa;
+  }
+  
+  .service-box {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #f0f0f0;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  .subnet-box {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #f3f3f3;
+    text-align: center;
+    border: 2px dashed #999;
+    border-radius: 5px;
+  }
+  
+  .external-service {
+    background-color: #fdf3d0;
+  }
+  
+  .subnets-container {
+    /* border: 2px dotted #999; */
+    display: flex;
+    /* flex-direction: column; */
+    margin: 20px 0;
+    gap: 10px;
+  }
+  .subnet-box{
+    border: 2px dashed #999;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    background-color: #f3f3f3; /* Light grey background for service items */
+    text-align: center;
+  }
+  
+  select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+  }
+  

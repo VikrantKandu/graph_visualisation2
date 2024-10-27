@@ -39,7 +39,7 @@
 //                 <FaCog className="menu-icon" /> Cloud Service
 //               </Link>
 //             </li>
-              
+
 //               {/* You can add more items here */}
 //             </ul>
 //           );
@@ -68,7 +68,7 @@
 //     if (!selectedItem) {
 //       return <p>Please select an item to see details.</p>;
 //     }
-    
+
 //     // Customize this content based on your application logic
 //     return <p>Details for: {selectedItem}</p>;
 //   };
@@ -96,22 +96,120 @@
 
 
 
+// import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import { FaChartLine, FaCog } from 'react-icons/fa'; // Import icons from react-icons
+// import './SecondarySidebar.css';
+
+// const SecondarySidebar = ({ menu, closeSidebar, isOpen }) => {
+//   const [selectedItem, setSelectedItem] = useState(null);
+//   const navigate = useNavigate(); // Use useNavigate
+
+//   // Handle item click to set the selected item and navigate
+//   const handleItemClick = (item, path) => {
+//     setSelectedItem(item);
+//     navigate(path); // Navigate to the specified path
+//   };
+
+//   // Dynamically render content based on selected menu
+//   const renderContent = () => {
+//     switch (menu) {
+//       case 'Dashboard':
+//         return (
+//           <ul>
+//             <li onClick={() => handleItemClick('Dashboard', '/dashboard')}>
+//               <FaChartLine className="menu-icon" /> Dashboard
+//             </li>
+//             <li onClick={() => handleItemClick('Settings', '/settings')}>
+//               <FaCog className="menu-icon" /> Settings
+//             </li>
+//           </ul>
+//         );
+//       case 'Inventory':
+//         return (
+//           <ul>
+//             <li onClick={() => handleItemClick('Cloud Service', '/InventoryCloudService')}>
+//               <FaCog className="menu-icon" /> Cloud Service
+//             </li>
+//           </ul>
+//         );
+//       case 'Explorer':
+//         return (
+//           <ul>
+//             <li onClick={() => handleItemClick('security_graph', '/security_graph')}>
+//               <FaChartLine className="menu-icon" /> Security Graph
+//               <ul>
+//                 <li onClick={() => handleItemClick('security_graph', '/queryGenerateGraph')}>
+//                   <FaChartLine className="menu-icon" /> Query Generate Graph
+//                 </li>
+//               </ul>
+//             </li>
+//             {/* <li onClick={() => handleItemClick('security_graph', '/queryGenerateGraph')}>
+//               <FaChartLine className="menu-icon" /> Security Graph
+//             </li> */}
+//             <li onClick={() => handleItemClick('CloudFunction', '/cloudfunction')}>
+//               <FaChartLine className="menu-icon" /> Architecture
+//             </li>
+//           </ul>
+//         );
+//       default:
+//         return <p>Select a menu to view details</p>;
+//     }
+//   };
+
+//   // Render details for the selected item
+//   const renderSelectedItemDetails = () => {
+//     if (!selectedItem) {
+//       return <p>Please select an item to see details.</p>;
+//     }
+
+//     // Customize this content based on your application logic
+//     return <p>Details for: {selectedItem}</p>;
+//   };
+
+//   return (
+//     <div className={`secondary-sidebar ${isOpen ? 'attached' : 'detached'}`}>
+//       <div className="secondary-sidebar-header">
+//         <h2>{menu}</h2>
+//         <button className="close-btn" onClick={closeSidebar}>Close</button>
+//       </div>
+//       <div className="secondary-sidebar-content">
+//         {renderContent()}
+//       </div>
+//       <div className="selected-item-details">
+//         {renderSelectedItemDetails()}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default SecondarySidebar;
+
+
+
+
+
+
+
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { FaChartLine, FaCog } from 'react-icons/fa'; // Import icons from react-icons
+import { useNavigate } from 'react-router-dom';
+import { FaChartLine, FaCog } from 'react-icons/fa';
 import './SecondarySidebar.css';
 
 const SecondarySidebar = ({ menu, closeSidebar, isOpen }) => {
   const [selectedItem, setSelectedItem] = useState(null);
-  const navigate = useNavigate(); // Use useNavigate
+  const [isSecurityGraphOpen, setIsSecurityGraphOpen] = useState(false); // State for submenu
+  const navigate = useNavigate();
 
-  // Handle item click to set the selected item and navigate
   const handleItemClick = (item, path) => {
     setSelectedItem(item);
-    navigate(path); // Navigate to the specified path
+    navigate(path);
   };
 
-  // Dynamically render content based on selected menu
+  const toggleSecurityGraph = () => {
+    setIsSecurityGraphOpen(!isSecurityGraphOpen); // Toggle submenu state
+  };
+
   const renderContent = () => {
     switch (menu) {
       case 'Dashboard':
@@ -136,9 +234,19 @@ const SecondarySidebar = ({ menu, closeSidebar, isOpen }) => {
       case 'Explorer':
         return (
           <ul>
-            <li onClick={() => handleItemClick('security_graph', '/security_graph')}>
+            <li onClick={toggleSecurityGraph}>
               <FaChartLine className="menu-icon" /> Security Graph
             </li>
+            {isSecurityGraphOpen && (
+              <ul>
+                <li onClick={() => handleItemClick('security_graph', '/security_graph')}>
+                  <FaChartLine className="menu-icon" /> Security Graph Main
+                </li>
+                <li onClick={() => handleItemClick('security_graph', '/queryGenerateGraph')}>
+                  <FaChartLine className="menu-icon" /> Query Generate Graph
+                </li>
+              </ul>
+            )}
             <li onClick={() => handleItemClick('CloudFunction', '/cloudfunction')}>
               <FaChartLine className="menu-icon" /> Architecture
             </li>
@@ -149,13 +257,10 @@ const SecondarySidebar = ({ menu, closeSidebar, isOpen }) => {
     }
   };
 
-  // Render details for the selected item
   const renderSelectedItemDetails = () => {
     if (!selectedItem) {
       return <p>Please select an item to see details.</p>;
     }
-
-    // Customize this content based on your application logic
     return <p>Details for: {selectedItem}</p>;
   };
 
@@ -168,9 +273,9 @@ const SecondarySidebar = ({ menu, closeSidebar, isOpen }) => {
       <div className="secondary-sidebar-content">
         {renderContent()}
       </div>
-      <div className="selected-item-details">
+      {/* <div className="selected-item-details">
         {renderSelectedItemDetails()}
-      </div>
+      </div> */}
     </div>
   );
 };

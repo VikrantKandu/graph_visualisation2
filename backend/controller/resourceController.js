@@ -1,8 +1,10 @@
 const neo4j = require('neo4j-driver');
 const AWS = require('aws-sdk');
+const bodyParser = require('body-parser');
 const connectdb = require('../config/db');
 const fetch = require('node-fetch'); // Ensure you have node-fetch installed
 const driver = connectdb();
+const session = driver.session();
 // Configure AWS with credentials and session token
 AWS.config.update({
     region: process.env.AWS_REGION,
@@ -56,118 +58,6 @@ const getAllServiceNamesAPI = async (req, res) => {
         res.status(500).json({ message: 'Failed to retrieve services' });
     }
 };
-
-// // Configure AWS
-// AWS.config.update({
-//     region: process.env.AWS_REGION,
-//     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-//     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-//     sessionToken: process.env.AWS_SESSION_TOKEN, // Add session token here
-// });
-
-// // // DynamoDB configuration
-// AWS.config.update({
-//     region: 'us-east-1' // Update this to your AWS region
-// });
-// const dynamodb = new AWS.DynamoDB.DocumentClient();
-// // Function to retrieve all items from the DynamoDB table
-
-// const getAllItemsAPI = async (req, res) => {
-//     const params = {
-//         TableName: 'EnabledServices',
-//     };
-
-//     try {
-//         const data = await dynamodb.scan(params).promise();
-//         console.log('All Items:', JSON.stringify(data.Items, null, 2)); // Log all items
-//         res.json(data.Items); // Send all items back in JSON format
-//     } catch (error) {
-//         console.error('Error fetching services:', error);
-//         res.status(500).json({ message: 'Failed to retrieve services' });
-//     }
-// };
-
-// const getAllServiceNamesAPI = async (req, res) => {
-//     const { cloud, type } = req.query; // Destructure both cloud and type from query
-//     // Create the params for DynamoDB query
-//     const params = {
-//         TableName: 'EnabledServices',
-//         FilterExpression: '#type = :cloudType AND #serviceType = :serviceType',
-//         ExpressionAttributeNames: {
-//             '#type': 'Type', // Map the placeholder for cloud type
-//             '#serviceType': 'Category', // Assuming 'Type' is the name of the service type field
-//         },
-//         ExpressionAttributeValues: {
-//             ':cloudType': cloud, // Value for cloud filtering
-//             ':serviceType': type, // Value for service type filtering
-//         },
-//     };
-
-//     try {
-//         const data = await dynamodb.scan(params).promise();
-//         // console.log('DynamoDB Response:', JSON.stringify(data, null, 2)); // Log the response
-//         res.json(data.Items); // Send filtered items back in JSON format
-//     } catch (error) {
-//         console.error('Error fetching services:', error);
-//         res.status(500).json({ message: 'Failed to retrieve services' });
-//     }
-// };
-
-//
-// const getAllItemsAPI = async (req, res) => {
-//     const { lastEvaluatedKey } = req.query; // Get the last evaluated key from query parameters
-
-//     const params = {
-//         TableName: 'EnabledServices',
-//         ExclusiveStartKey: lastEvaluatedKey ? JSON.parse(lastEvaluatedKey) : undefined, // Set the exclusive start key for pagination
-//     };
-
-//     try {
-//         const data = await dynamodb.scan(params).promise();
-//         // console.log('All Items:', JSON.stringify(data.Items, null, 2));
-//         res.json({
-//             items: data.Items,
-//             lastEvaluatedKey: data.LastEvaluatedKey ? JSON.stringify(data.LastEvaluatedKey) : null, // Return the last evaluated key for the next page
-//         });
-//     } catch (error) {
-//         console.error('Error fetching services:', error);
-//         res.status(500).json({ message: 'Failed to retrieve services' });
-//     }
-// };
-
-// const getAllServiceNamesAPI = async (req, res) => {
-//     const { cloud, type, lastEvaluatedKey } = req.query;
-//     console.log(cloud,"hello ji how are you ?",type);
-//     const params = {
-//         TableName: 'EnabledServices',
-//         FilterExpression: '#type = :cloudType AND #serviceType = :serviceType',
-//         ExpressionAttributeNames: {
-//             '#type': 'Type',
-//             '#serviceType': 'Category',
-//         },
-//         ExpressionAttributeValues: {
-//             ':cloudType': cloud,
-//             ':serviceType': type,
-//         },
-//         Limit: 10, // Limit to 10 items at a time
-//         ExclusiveStartKey: lastEvaluatedKey ? JSON.parse(lastEvaluatedKey) : undefined,
-//     };
-
-//     try {
-//         const data = await dynamodb.scan(params).promise();
-//         res.json({
-//             items: data.Items,
-//             lastEvaluatedKey: data.LastEvaluatedKey ? JSON.stringify(data.LastEvaluatedKey) : null,
-//         });
-//         console.log(res);
-//     } catch (error) {
-//         console.error('Error fetching services:', error);
-//         res.status(500).json({ message: 'Failed to retrieve services' });
-//     }
-// };
-
-
-// 
 
 
 //getresource
@@ -443,10 +333,229 @@ const send_node_data= async (req, res) => {
       await session.close();
     }
   };  
+
+  /**
+ * Run a Cypher query in Neo4j.
+ * @param {string} query - The Cypher query string.
+ * @param {object} parameters - The parameters to pass into the query.
+ * @returns {Promise<Array>} - The result of the query as an array of records.
+ */
+const runQuery = async (req, res) => {
+  const session = driver.session(); // Create a session
+
+  try {
+    // Get the Cypher query and parameters from the request body
+    const { query, parameters } = req.body;
+
+    // Validate the query input
+    if (!query) {
+      return res.status(400).send({ error: 'Query is required in the request body.' });
+    }
+
+    // Execute the query
+    const result = await session.run(query, parameters || {});
+
+    // Extract the result as an array of objects
+    const records = result.records.map(record => record.toObject());
+
+    // Send the result back as JSON
+    res.json(records);
+  } catch (error) {
+    console.error('Error executing query:', error);
+    res.status(500).send({ error: 'An error occurred while executing the query.' });
+  } finally {
+    await session.close(); // Always close the session
+  }
+};
+
+
+
+const architecture = async (req, res) => {
+  const session = driver.session();
+  try {
+    const result = await session.run('MATCH (n) RETURN DISTINCT labels(n) AS labels, count(n) AS count');
+    const records = result.records.map(record => ({
+      labels: record.get('labels'),
+      count: record.get('count')
+    }));
+    res.json({
+      totalCount: records.length,
+      data: records,
+    });
+  } catch (error) {
+    console.error('Error fetching data from Neo4j:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  } finally {
+    await session.close();
+  }
+};
+
 //
 
+// Fetch all accounts
+const fetchAccounts = async (req, res) => {
+  const session = driver.session();
+  try {
+    const result = await session.run('MATCH (a:Account) RETURN a');
+    const accounts = result.records.map(record => record.get('a').properties);
+    res.json(accounts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching accounts');
+  } finally {
+    session.close();
+  }
+};
+
+// Fetch regions for a specific account
+const fetchRegionsForAccount = async (req, res) => {
+  const { accountName } = req.params;
+  console.log(accountName);
+  const session = driver.session();
+  try {
+    const result = await session.run('MATCH (a:Account {name: $accountName})-[:HAS_REGION]->(r:Region) RETURN r', {
+      accountName,
+    });
+    const regions = result.records.map(record => record.get('r').properties);
+    res.json(regions);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching regions');
+  } finally {
+    session.close();
+  }
+};
+
+// Fetch controlled services for a specific account and region
+const fetchControlledServicesForRegion = async (req, res) => {
+  const { accountName, regionName } = req.params;
+  const session = driver.session();
+  try {
+    const result = await session.run(
+      'MATCH (a:Account {name: $accountName})-[:HAS_REGION]->(r:Region {name: $regionName})-[:HAS_CONTROLLED_SERVICE]->(s:ControlledService) RETURN s',
+      { accountName, regionName }
+    );
+    const services = result.records.map(record => record.get('s').properties);
+    res.json(services);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching controlled services');
+  } finally {
+    session.close();
+  }
+};
+
+// Fetch monitoring services for a specific account and region
+const fetchMonitoringServicesForRegion = async (req, res) => {
+  const { accountName, regionName } = req.params;
+  const session = driver.session();
+  try {
+    const result = await session.run(
+      'MATCH (a:Account {name: $accountName})-[:HAS_REGION]->(r:Region {name: $regionName})-[:HAS_MONITORING_SERVICE]->(s:MonitoringService) RETURN s',
+      { accountName, regionName }
+    );
+    const services = result.records.map(record => record.get('s').properties);
+    res.json(services);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching monitoring services');
+  } finally {
+    session.close();
+  }
+};
+
+
+const getVpcs = async (req, res) => {
+  const { accountName, regionName } = req.params;
+  try {
+    const result = await session.run(
+      'MATCH (a:Account {name: $accountName})-[:HAS_REGION]->(r:Region {name: $regionName})<-[:HAS_REGION]-(vpc:VPC) RETURN vpc.name AS name',
+      { accountName, regionName }
+    );
+    const vpcs = result.records.map(record => record.get('name'));
+    res.json(vpcs);
+    console.log(vpcs);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error fetching VPCs' });
+  }
+};
+
+const getSubnets = async (req, res) => {
+  const { accountName, regionName } = req.params;
+  const session = driver.session(); // Assuming `driver` is your Neo4j driver
+  try {
+    const result = await session.run(
+      'MATCH (a:Account {name: $accountName})-[:HAS_REGION]->(r:Region {name: $regionName})<-[:HAS_REGION]-(vpc:VPC)-[:HAS_SUBNET]->(subnet:Subnet) RETURN subnet.name AS name,subnet.public AS type',
+      { accountName, regionName }
+    );
+
+    const subnets = result.records.map(record => ({
+      name: record.get('name'),
+      type: record.get('type')
+    }));
+    res.json(subnets);
+    console.log(subnets);
+  } catch (error) {
+    console.error('Error fetching subnets:', error);
+    res.status(500).json({ error: 'Error fetching subnets' });
+  } finally {
+    session.close(); // Always close the session
+  }
+};
+
+
+const getExternalServices = async (req, res) => {
+  const { accountName } = req.params;
+  try {
+    const result = await session.run(
+      'MATCH (a:Account {name: $accountName})-[:USES_EXTERNAL_SERVICE]->(es:ExternalService) RETURN es.name AS name',
+      { accountName }
+    );
+    const services = result.records.map(record => record.get('name'));
+    res.json(services);
+    console.log(services);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error fetching external services' });
+  }
+};
+
+// 
+const fetchRegionsForMultipleAccounts = async (req, res) => {
+  const { accountNames } = req.body; // Expecting an array of account names in the request body
+  const session = driver.session();
+  
+  try {
+    const result = await session.run(
+      'MATCH (a:Account)-[:HAS_REGION]->(r:Region) WHERE a.name IN $accountNames RETURN a.name AS accountName, r',
+      { accountNames }
+    );
+
+    const accountRegions = result.records.reduce((acc, record) => {
+      const accountName = record.get('accountName');
+      const region = record.get('r').properties;
+
+      if (!acc[accountName]) {
+        acc[accountName] = [];
+      }
+      acc[accountName].push(region);
+      return acc;
+    }, {});
+
+    res.json(accountRegions);
+  } catch (error) {
+    console.error('Error fetching regions for multiple accounts:', error);
+    res.status(500).send('Error fetching regions for multiple accounts');
+  } finally {
+    session.close();
+  }
+};
+
+
 module.exports = {
-    getResources,login,getLLMResponse,getServices,getAllServiceNamesAPI,getAllItemsAPI,cloud_function,send_node_data,
+    getResources,login,getLLMResponse,getServices,getAllServiceNamesAPI,getAllItemsAPI,cloud_function,send_node_data,runQuery,
+    architecture,fetchMonitoringServicesForRegion,fetchControlledServicesForRegion,fetchRegionsForAccount,fetchAccounts,getVpcs,getSubnets,getExternalServices,fetchRegionsForMultipleAccounts
 };
 
 

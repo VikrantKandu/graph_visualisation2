@@ -3,8 +3,9 @@
 .dashboard {
     background-color: var(--background-color);
     color: var(--text-color);
-    padding: 20px;
+    padding: 3px;
     margin-left: 100ps;
+    margin-top: 0;
   }
   
   .dashboard .card {

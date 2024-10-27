@@ -195,7 +195,7 @@ const Cloud_Function = () => {
   return (
     <div className="graph-container">
       <div id="graph-frame">
-        <svg ref={svgRef}></svg>
+        <svg id='svg_graph' ref={svgRef}></svg>
       </div>
 
       <div id="text-info">Adjustable Node Sizes and Link Strengths</div>

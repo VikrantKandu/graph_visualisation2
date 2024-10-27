@@ -41,9 +41,9 @@ body {
   
 } */
 
-.sidebar-closed .dashboard-container {
-  margin-left: 80px; /* Adjust margin when sidebar is closed */
-}
+/* .sidebar-closed .dashboard-container {
+  margin-left: 80px; 
+} */
 
 :root {
   --background-color: #ffffff;
@@ -60,7 +60,6 @@ body {
   --header-bg-color: #212529;
 }
 
-/* General styles */
 body {
   background-color: var(--background-color);
   color: var(--text-color);
@@ -84,7 +83,6 @@ body {
   color: var(--text-color);
 }
 
-/* src/App.css */
 .theme-toggle {
   position: absolute;
   top: 10px;
@@ -117,8 +115,8 @@ body {
   position: absolute;
   background-color: white;
   border: 1px solid #ccc;
-  z-index: 1000; /* Make sure it appears above other elements */
-  width: 150px; /* Set a width or max-width */
+  z-index: 1000; 
+  width: 150px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -126,17 +124,16 @@ body {
   display: block;
   padding: 10px;
   text-decoration: none;
-  color: black; /* Change as needed */
+  color: black; 
 }
 
 .dropdown-item:hover {
-  background-color: #f0f0f0; /* Change hover color */
+  background-color: #f0f0f0; 
 }
 
-/* Responsive styles */
 @media (max-width: 600px) {
   .dropdown {
-    width: 100%; /* Full width on smaller screens */
+    width: 100%; 
   }
 }
 
@@ -156,25 +153,24 @@ body {
 
 
 
-/* App.css */
+
 .app-container {
   display: flex;
   height: 100vh;
 }
 
-/* For the main content to adjust when sidebar is toggled */
 .dashboard-container {
-  /* display: flex; */
   transition: margin-left 0.3s ease;
   flex-grow: 1;
 }
 
 .dashboard-container.sidebar-open {
-  margin-left: 130px; /* Sidebar width when open */
+  margin-left: 97px;
+  margin-top: -2px;
 }
 
 .dashboard-container.sidebar-closed {
-  margin-left: 60px; /* Sidebar width when closed */
+  margin-left: 57px; 
 }
 
 

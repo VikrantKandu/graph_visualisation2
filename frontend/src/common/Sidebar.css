@@ -4,9 +4,7 @@
 /* */
 
 
-.menu-item {
-  cursor: pointer;
-}
+
 
 .menu-content {
   display: flex;
@@ -14,9 +12,7 @@
   align-items: center; /* Center align the icon and text */
 }
 
-.menu-text {
-  margin-bottom: 4px; /* Space between text and icon */
-}
+
 
 /*  */
 .sidebar {
@@ -38,15 +34,16 @@
 .menu-list {
   list-style: none;
   padding: 0;
-  margin: 40px 0; /* Space above the menu */
+  margin: 10px 0; /* Space above the menu */
 }
 
 .menu-item {
   display: flex;
   align-items: center;
-  padding: 15px 20px; /* Adjust padding as needed */
+  padding: 5px 15px; /* Adjust padding as needed */
   cursor: pointer;
   transition: background 0.2s;
+  font-size: small;
 }
 
 .menu-item:hover {
@@ -55,6 +52,7 @@
 
 .menu-text {
   margin-left: 10px; /* Space between icon and text */
+  margin-bottom: 4px; /* Space between text and icon */
 }
 /* 
 .sidebar.closed {
@@ -158,11 +156,17 @@
 
 
 .sidebar.open {
-  width: 150px;
+  width: 120px;
 }
 
 .sidebar.closed {
   width: 80px; /* Adjust width when sidebar is closed */
+}
+
+.sidebar.closed.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0; /* Space above the menu */
 }
 
 

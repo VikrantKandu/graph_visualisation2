@@ -150,3 +150,12 @@ select:focus {
 .private-subnets {
   border: 2px dashed #ccc; /* Green border for private subnets */
 }
+
+.react-multiselect{
+  width: 160px;
+  display: flex;
+  align-items: center;
+}
+.rmsc .dropdown-heading .dropdown-heading-value{
+  padding-right: 70px;
+}
